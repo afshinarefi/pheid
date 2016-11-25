@@ -9,6 +9,7 @@
 
 #include<iostream>
 #include"data.hpp"
+#include"chromosome.hpp"
 #include <utility>
 
 using namespace std;
@@ -16,7 +17,14 @@ using namespace std;
 int main(int argc, char** argv)
 {
   data d(10,2);
-  d.print_powers();
+  double f=10000;
+  for(int i=0;i<1000000;i++)
+  {
+    chromosome c(d);
+    f=min(f,c.fitness());
+  }
+  cout<<f<<endl;
+
   return 0;
 }
 

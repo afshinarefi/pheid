@@ -12,24 +12,27 @@
 
 #include<vector>
 #include"types.hpp"
+#include"data.hpp"
 #include<utility>
 
 using namespace std;
 
 class chromosome
 {
+  private:
+
+  data& db;
+  vector<bool> delivered;
+
   public:
 
   vector<pair<node,node> > genes;
 
-  chromosome()
-  {
-    
-  }
-
+  chromosome(data&);
   double fitness();
-
   chromosome crossover(chromosome, chromosome);
+  void print();
+  double transmit(node,node);
 
 };
 

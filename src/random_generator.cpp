@@ -13,9 +13,13 @@
 
 using namespace std;
 
-random_generator::random_generator()
+random_generator::random_generator(node node_count):
+generator(0),
+radius(0.0,1.0),
+angle(0.0,2*PI),
+rand_node(0,node_count-1)
 {
-  generator.seed(0);
+  
 }
 
 pair<double, double> random_generator::coordinate()
@@ -26,4 +30,9 @@ pair<double, double> random_generator::coordinate()
   double x=sqrt(r)*cos(a);
   double y=r*sin(a);
   return make_pair(x,y);
+}
+
+node random_generator::random_node()
+{
+  return rand_node(generator);
 }

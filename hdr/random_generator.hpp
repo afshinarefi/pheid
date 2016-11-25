@@ -22,13 +22,15 @@ class random_generator
   private:
 
   default_random_engine generator;
-  uniform_real_distribution<double> radius{0.0,1.0};
-  uniform_real_distribution<double> angle{0.0,2*PI};
+  uniform_real_distribution<double> radius;
+  uniform_real_distribution<double> angle;
+  uniform_int_distribution<node> rand_node;
 
   public:
 
-  random_generator();
-  pair<double, double> coordinate();
+  random_generator(node);
+  coor coordinate();
+  node random_node();
 
 
 };

@@ -12,10 +12,12 @@
 #include<utility>
 #include<iostream>
 #include<cmath>
+#include<algorithm>    // sort()
 
 using namespace std;
 
-data::data(int node_count,double alpha)
+data::data(int nc,double alpha)
+:node_count(nc),rg(node_count)
 {
   for(int i=0;i<node_count;i++)
   {
@@ -24,22 +26,29 @@ data::data(int node_count,double alpha)
   for(int i=0;i<node_count;i++)
   {
     vector<double> row;
+    vector<pair<double,node>> sorted_row;
     for(int j=0;j<node_count;j++)
     {
-      row.push_back(pow(distance(coordinates[i],coordinates[j]),alpha));
+      double power=pow(distance(coordinates[i],coordinates[j]),alpha);
+      row.push_back(power);
+      sorted_row.push_back(make_pair(power,j));
     }
+    sort(sorted_row.begin(),sorted_row.end());
     powers.push_back(row);
+    sorted_power.push_back(sorted_row);
   }
 }
 
-double data::distance(pair<double,double> x,pair<double,double> y)
+double data::distance(coor a,coor b)
 {
-  return sqrt((y.first-x.first)*(y.first-x.first)+(y.second-x.second)*(y.second-x.second));
+  double dist_x=(b.first-a.first);
+  double dist_y=(b.second-a.second);
+  return sqrt(dist_x*dist_x+dist_y*dist_y);
 }
 
 void data::print()
 {
-  for(vector<pair<double, double> >::iterator it=coordinates.begin();it<coordinates.end();it++)
+  for(vector<coor>::iterator it=coordinates.begin();it<coordinates.end();it++)
   {
     cout<<it->first<<" "<<it->second<<endl;
   }
@@ -55,4 +64,21 @@ void data::print_powers()
     }
     printf("\n");
   }
+}
+
+void data::print_sorted_powers()
+{
+  for(size_t i=0;i<sorted_power.size();i++)
+  {
+    for(size_t j=0;j<sorted_power[i].size();j++)
+    {
+      printf("(%1.3lf,%3d)",sorted_power[i][j].first,sorted_power[i][j].second);
+    }
+    printf("\n");
+  }
+}
+
+node data::random_node()
+{
+  return rg.random_node();
 }

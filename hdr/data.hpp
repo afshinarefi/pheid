@@ -11,24 +11,29 @@
 #define HPP_DATA
 
 #include"random_generator.hpp"
+#include"types.hpp"
 #include<vector>
 #include<utility>
 
 class data
 {
-  private:
+  public:
+  node node_count;
 
-  random_generator rg;
-  vector<pair<double,double> > coordinates;
-  vector<vector<double> > powers;
   
+  random_generator rg;
+  vector<coor> coordinates;
+  vector<vector<double> > powers;
+  vector<vector<pair<double,node>>> sorted_power;
+
   public:
 
-  double distance(pair<double,double>,pair<double,double>);
+  double distance(coor,coor);
   data(int,double);
   void print();
   void print_powers();
-
+  void print_sorted_powers();
+  node random_node();
 };
 
 #endif
