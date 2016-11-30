@@ -12,13 +12,28 @@
 
 #include<vector>
 #include<types.hpp>
+#include<chromosome.hpp>
 
 class pheid
 {
   public:
 
+  static random_generator* generator;
+  static data* db;
   
+  vector<chromosome> population;
+  vector<chromosome> new_generation;
+  size_t pop_count;
 
+  pheid(int);
+  void create_initial_population();
+  void evaluate();
+  void generate_offspring();
+  void create_new_population();
+  void report();
+  void print_population();
+  void print_new_generation();
+  void mutate();
 };
 
 #endif

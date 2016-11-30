@@ -8,6 +8,7 @@
 /*****************************************************************************/
 
 #include"data.hpp"
+#include"pheid.hpp"
 #include<vector>
 #include<utility>
 #include<iostream>
@@ -17,11 +18,12 @@
 using namespace std;
 
 data::data(int nc,double alpha)
-:node_count(nc),rg(node_count)
+:node_count(nc)
 {
-  for(int i=0;i<node_count;i++)
+  coordinates.push_back(make_pair(0,0));
+  for(int i=1;i<node_count;i++)
   {
-    coordinates.push_back(rg.coordinate());
+    coordinates.push_back(pheid::generator->coordinate());
   }
   for(int i=0;i<node_count;i++)
   {
@@ -50,7 +52,7 @@ void data::print()
 {
   for(vector<coor>::iterator it=coordinates.begin();it<coordinates.end();it++)
   {
-    cout<<it->first<<" "<<it->second<<endl;
+    cout<<it->first<<","<<it->second<<endl;
   }
 }
 
@@ -80,5 +82,5 @@ void data::print_sorted_powers()
 
 node data::random_node()
 {
-  return rg.random_node();
+  return pheid::generator->random_node();
 }

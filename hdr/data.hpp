@@ -20,8 +20,6 @@ class data
   public:
   node node_count;
 
-  
-  random_generator rg;
   vector<coor> coordinates;
   vector<vector<double> > powers;
   vector<vector<pair<double,node>>> sorted_power;

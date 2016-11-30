@@ -19,20 +19,25 @@ using namespace std;
 
 class chromosome
 {
-  private:
-
-  data& db;
-  vector<bool> delivered;
-
   public:
 
-  vector<pair<node,node> > genes;
+  vector<bool> delivered;
+  double score;
+  
 
-  chromosome(data&);
+  vector<pair<node,node> > genes;
+  vector<pair<node,node>> new_genes;
+
+  chromosome();
+  chromosome(chromosome,chromosome);
+  chromosome crossover(chromosome);
   double fitness();
   chromosome crossover(chromosome, chromosome);
   void print();
   double transmit(node,node);
+  const bool operator<(const chromosome&) const;
+  void mutate();
+  void evaluate();
 
 };
 

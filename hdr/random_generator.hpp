@@ -28,10 +28,11 @@ class random_generator
 
   public:
 
-  random_generator(node);
+  random_generator(long,node);
   coor coordinate();
   node random_node();
-
+  int sqrt_dist(int,int);
+  int uniform_dist(int,int);
 
 };
 
